@@ -24,17 +24,24 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (
-      email.trim().toLowerCase() ===
-        "admin@gmail.com" &&
-      password.trim() === "admin123"
-    ) {
-      dispatch(login());
-      navigate("/dashboard");
-    } else {
-      setError("Invalid Credentials");
-    }
-  };
+  const storedUser = JSON.parse(
+    localStorage.getItem("user")
+  );
+
+  if (
+    storedUser &&
+    email.trim().toLowerCase() ===
+      storedUser.email.toLowerCase() &&
+    password.trim() ===
+      storedUser.password
+  ) {
+    dispatch(login());
+
+    navigate("/dashboard");
+  } else {
+    setError("Invalid Credentials");
+  }
+};
 
   return (
     <Box
@@ -137,6 +144,14 @@ const Login = () => {
             onClick={handleLogin}
           >
             Login
+          </Button>
+          <Button
+          fullWidth
+          variant="text"
+          sx={{ mt: 2 }}
+          onClick={() => navigate("/register")}
+          >
+          Don't have an account? Register
           </Button>
 
           

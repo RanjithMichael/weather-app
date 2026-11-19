@@ -123,6 +123,12 @@ const Dashboard = () => {
           >
             🌤 Weather Forecast App
           </Typography>
+          <Button
+          color="inherit"
+          onClick={() => navigate("/profile")}
+          >
+          Profile
+          </Button>
 
           <Button
             color="inherit"
@@ -341,16 +347,14 @@ const Dashboard = () => {
             {history.map(
               (item, index) => (
                 <Chip
-                  key={index}
-                  label={item}
-                  clickable
-                  color="primary"
-                  onClick={() =>
-                    handleHistoryClick(
-                      item
-                    )
-                  }
-                />
+                 key={index}
+                 label={item}
+                 clickable
+                 color="primary"
+                 onClick={() =>
+                 navigate(`/history/${item}`)
+               }
+            />
               )
             )}
           </Box>
